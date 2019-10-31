@@ -1,0 +1,57 @@
+<div class="container">    
+    <div class="row myheader">
+        <form action="" class="col-sm-4">
+            <div class="form-group">
+                <input type="text" class="form-control" placeholder="Search Git-Usernames" [(ngModel)]="username" name="username" (keyup)="findProfile()"> 
+            </div>
+        </form>
+
+        <div class="col-sm-4">
+            <nav style="display: flex">
+                <button class="mybtn btn btn-sm btn-warning" (click)="ngOnInit()"><a>Home</a></button>
+                <button class="mybtn btn btn-sm btn-warning"><a routerLink="/favourites" >My Fav Repos</a></button>               
+            </nav>
+        </div>
+
+        <div class="col-sm-4">
+            <div style="display: flex">
+                <input type="text" class="form-control" placeholder="repo name" #reponame>
+                <button class="btn btn-sm btn-warning mybtn" (click)="creatrepo(reponame.value)"><a routerLink="" >Create Repo</a></button>
+            </div>
+        </div>
+    </div>
+
+    <div *ngIf="profile" >
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                {{profile.name}} <small>{{profile.login}}</small>
+            </div>
+        </div>
+
+        <div class="panel-body">
+            <div class="row">
+                <div class="col-sm-3">
+                    <img src="{{profile.avatar_url}}" class="img-circle img-responsive" alt="Profile Image">
+                </div>
+
+                <div class="col-sm-5">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Repositories</h3>
+                        </div>
+                        <div class="panel-body" *ngFor="let repo of repos">
+                            <p>
+                                <a routerLink="repoDetails" (click)="captureRepo(repo)">{{repo.name}}</a>  
+                                <br>
+                                <a href="{{repo.html_url}}" class="btn btn-sm btn-warning mybtn1">View Project</a>
+                                <button *ngIf=" enable_del == 'Pranjal2997' " class="btn btn-sm btn-warning mybtn mybtn1" (click)="deleterepo(repo)" >Delete this Project</button>
+                                <button routerLink="/favourites" class="btn btn-sm btn-warning mybtn mybtn1" (click)="addToFav(repo)">Add to Favourites</button>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>

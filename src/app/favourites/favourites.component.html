@@ -1,0 +1,18 @@
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h2>My Favourites</h2>
+            <button class="mybtn btn btn-sm btn-warning" (click)="creatrepo(reponame.value)"><a routerLink="/" >Home</a></button>
+        </div>
+        
+        <div class="panel-body">
+            <!-- <p>Here we go ! </p> -->
+            <p *ngFor ="let repo of fav_repos">
+                {{repo.name}} <br>
+                <a href="{{repo.html_url}}" class="btn btn-sm btn-warning mybtn">View Project</a>
+                <button class="btn btn-sm btn-warning mybtn" (click)="RemoveFromFav(repo)" >Remove From Fav</button>
+            </p>
+        </div>
+    </div>
+</div>
